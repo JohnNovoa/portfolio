@@ -449,7 +449,7 @@ def home():
 </main>
 '''
     page += contact_band() + foot(pre)
-    open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8').write(page)
+    open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8', newline='\n').write(page)
 
 
 # ---------------------------------------------------------------- project pages
@@ -532,7 +532,7 @@ def project_page(p, idx):
 </main>
 '''
     page += contact_band() + foot(pre)
-    open(os.path.join(OUT, 'projects', f'{p["slug"]}.html'), 'w', encoding='utf-8').write(page)
+    open(os.path.join(OUT, 'projects', f'{p["slug"]}.html'), 'w', encoding='utf-8', newline='\n').write(page)
 
 
 # ---------------------------------------------------------------- run
