@@ -17,7 +17,11 @@
     dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
   }
 
-  // Copy email button
+  // Copy email button (status is announced to screen readers)
+  var status = document.createElement('span');
+  status.className = 'sr';
+  status.setAttribute('role', 'status');
+  document.body.appendChild(status);
   document.querySelectorAll('.copy').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var text = btn.getAttribute('data-copy');
@@ -25,7 +29,8 @@
         var label = btn.textContent;
         btn.textContent = 'Email copied';
         btn.classList.add('done');
-        setTimeout(function () { btn.textContent = label; btn.classList.remove('done'); }, 2200);
+        status.textContent = 'Email address copied';
+        setTimeout(function () { btn.textContent = label; btn.classList.remove('done'); status.textContent = ''; }, 2200);
       };
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(text).then(done, function () { window.location.href = 'mailto:' + text; });
