@@ -14,13 +14,13 @@ assets/js/site.js     Image lightbox and copy-email button
 assets/img/           Project images (WebP)
 assets/fonts/         Archivo variable font (SIL Open Font License)
 404.html              Not-found page for GitHub Pages
-tools/build_site.py   Regenerates the HTML and images from the Notion export
+tools/add_image.py    Converts a source image into the WebP files the site uses
 CLAUDE.md             Instructions for Claude Code
 ```
 
 No build step for visitors and no dependencies. Open `index.html` in a browser to preview.
 
-To regenerate after a Notion update: unzip the Notion Markdown export into `../Notion_Portfolio/` and run `python tools/build_site.py` (needs Python 3.9+ and Pillow: `pip install -r tools/requirements.txt`).
+Edit the HTML directly. To add an image, run `python tools/add_image.py SOURCE name` (needs Python 3.9+ and Pillow: `pip install -r tools/requirements.txt`) and paste the printed width and height into the `<img>` tag.
 
 ## Publishing
 
@@ -28,4 +28,4 @@ GitHub Pages serves the `main` branch from the root folder (Settings > Pages > D
 
 ## Content
 
-Text and images come from the Notion portfolio. Project details stay general: product type, role, processes and results, with no internal project names, supplier names or specifications.
+Project details stay general: product type, role, processes and results, with no internal project names, supplier names or specifications.

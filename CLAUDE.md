@@ -4,7 +4,7 @@ Sitio estático del portafolio de John Novoa, Senior Mechanical Engineer en Colo
 
 - Repositorio: https://github.com/JohnNovoa/portfolio (público)
 - Web: https://johnnovoa.github.io/portfolio/ (GitHub Pages, rama `main`, carpeta raíz)
-- Fuente del contenido: el portafolio de Notion de John, exportado en Markdown en `../Notion_Portfolio/`
+- Fuente original: el portafolio de Notion de John (export en `../Notion_Portfolio/`). Desde el 23 nov 2026 el sitio es independiente de Notion: no hay que mantenerlos iguales y el sitio ya no se genera desde el export.
 - Idioma del sitio: inglés. Con John se habla en español.
 
 ## Estructura
@@ -12,12 +12,12 @@ Sitio estático del portafolio de John Novoa, Senior Mechanical Engineer en Colo
 ```
 index.html              Portada: hero, Selected work (4 destacados), More projects, About, contacto
 projects/<slug>.html    Un caso de estudio por proyecto
-assets/css/site.css     Todo el diseño (editar a mano)
-assets/js/site.js       Lightbox de imágenes y botón "Copy email" (editar a mano)
+assets/css/site.css     Todo el diseño
+assets/js/site.js       Lightbox de imágenes y botón "Copy email"
 assets/fonts/           Archivo variable (licencia OFL)
-assets/img/             Imágenes WebP generadas por el script (no editar a mano)
+assets/img/             Imágenes WebP
 assets/favicon.svg
-tools/build_site.py     Genera index.html, projects/*.html y assets/img/ desde el export de Notion
+tools/add_image.py      Convierte una imagen original en los WebP del sitio
 404.html, README.md, .nojekyll
 ```
 
@@ -25,24 +25,18 @@ Sin frameworks, sin npm, sin paso de compilación para el visitante. Rutas relat
 
 ## Cómo se actualiza
 
-El HTML es generado. Los cambios de contenido van por el script, no a mano en el HTML, porque la próxima generación los borra.
+El HTML es la fuente: los cambios de texto se hacen directamente en `index.html` y `projects/*.html`. Si un dato se repite (por ejemplo, el nombre o el resumen de un proyecto aparece en la portada y en su página), cambiarlo en todos los sitios.
 
-1. John actualiza Notion y exporta (··· > Export > Markdown & CSV, con subpáginas). Descomprime el export en `../Notion_Portfolio/`, reemplazando el anterior.
-2. Desde la raíz del repo: `.venv/Scripts/python tools/build_site.py` (o `--export "ruta"` si el export está en otro lugar). Requiere Python 3.9+ y Pillow.
-   - El entorno virtual `.venv/` vive en la raíz del repo (ignorado por git) y ya tiene Pillow. Si no existe: `python -m venv .venv` y `.venv/Scripts/python -m pip install -r tools/requirements.txt`.
-   - Windows necesita rutas largas activadas (`LongPathsEnabled = 1`). Algunas imágenes del export superan los 260 caracteres de ruta. Sin eso, el Explorador no las extrae del zip y el script falla con `FileNotFoundError`.
-   - Tras descomprimir, comprobar que no falte nada: el zip y la carpeta deben tener el mismo número de archivos.
-3. El script borra y regenera `projects/` y `assets/img/`, y reescribe `index.html`. No toca CSS, JS, fuentes, 404, README ni este archivo.
-4. Revisa el resultado en el navegador (abre `index.html`) en escritorio y en móvil (390 px de ancho).
+Imágenes nuevas:
+1. Originales de John en `../R-Dog/`, `../R_2A/`, `../R-Kiwi_Pizza/`, `../Other/` y `../sin_marcas/`. Nunca subir originales al repo.
+2. Antes de convertir, revisar la imagen con las reglas de contenido: recortar personas, pixelar QR y números de robot. Las ediciones se hacen en una copia en el scratchpad.
+3. Desde la raíz del repo: `.venv/Scripts/python tools/add_image.py ORIGEN nombre-descriptivo`. Escribe `assets/img/nombre.webp` (hasta 1600 px) y `nombre-sm.webp` (hasta 760 px) e imprime los `width`/`height` para el `<img>`. Avisa si el original mide menos de 1200 px.
+4. Actualizar todas las referencias (portada, página del proyecto, `og:image`) y borrar con `git rm` el WebP viejo si ya no se usa.
+5. Revisar en el navegador en escritorio y en móvil (390 px de ancho).
 
-Qué vive dentro de `tools/build_site.py` y no en Notion:
-- Experiencia, educación, certificaciones y herramientas de la sección About (listas `experience`, `education`, `certifications`, `skills`).
-- Las tres imágenes del hero (Design, Build, Validate) y sus textos.
-- El texto del hero, de los encabezados de sección y del bloque de contacto.
-- Cuáles proyectos salen destacados: los 4 primeros con imagen según la propiedad Order de Notion.
-- Corrección de typos de Notion (`TYPO_FIXES`).
+El entorno virtual `.venv/` vive en la raíz del repo (ignorado por git) y tiene Pillow con soporte AVIF. Si no existe: `python -m venv .venv` y `.venv/Scripts/python -m pip install -r tools/requirements.txt`.
 
-Los textos de cada proyecto (descripción, viñetas, pies de foto) salen de Notion. Si John quiere cambiar uno, lo ideal es cambiarlo en Notion y regenerar. Si es urgente, edita el script o el HTML y avísale que Notion queda desactualizado.
+El generador antiguo desde Notion (`tools/build_site.py`) se retiró el 23 nov 2026. Sigue en el historial de git (commit `1ed29d8`) por si hiciera falta. No volver a usarlo: borraría los cambios hechos a mano.
 
 ## Diseño
 
@@ -56,7 +50,7 @@ Los textos de cada proyecto (descripción, viñetas, pies de foto) salen de Noti
 
 ## Reglas de contenido (obligatorias)
 
-Vienen de los acuerdos con John para el portafolio. No se rompen aunque la imagen o el texto estén en Notion.
+Vienen de los acuerdos con John para el portafolio. No se rompen aunque la imagen o el texto vengan de Notion o de los originales de John.
 
 - Proyectos en términos generales: tipo de producto, rol de John, procesos y resultado. Sin nombres internos de proyectos (R-Dog, R2-A, R-Kiwi, R-Top).
 - Materiales generales permitidos (aluminum, PETG). Sin dimensiones ni valores de especificación.
@@ -80,14 +74,13 @@ Vienen de los acuerdos con John para el portafolio. No se rompen aunque la image
 
 - Nunca hacer `git push`, cambiar la configuración de GitHub Pages ni publicar nada sin un "sí" explícito de John para esa acción concreta.
 - Commits pequeños, con mensaje en inglés que diga qué cambió.
-- No subir el export de Notion ni imágenes originales sin procesar al repo. Solo lo que genera el script.
+- No subir el export de Notion ni imágenes originales sin procesar al repo. Solo los WebP que genera `tools/add_image.py`.
 - `.gitignore` excluye `.venv/`, cachés de Python y archivos del sistema.
 
-## Estado al 22 nov 2026
+## Estado al 23 nov 2026
 
-- Sitio publicado en https://johnnovoa.github.io/portfolio/ (GitHub Pages desde `main`, carpeta raíz, activado el 22 nov 2026). Portada, las 11 páginas de proyecto y la 404 verificadas en línea, sin enlaces ni imágenes rotas. Falta que John lo revise visualmente en el celular.
-- El script escribe el HTML con finales de línea LF, así que regenerar con el mismo export no deja diff.
-- Rutas largas activadas en Windows. El export en `../Notion_Portfolio/` está completo (103 archivos, igual que `../n.zip`) y regenerar el sitio con él no deja diff.
-- Pendiente en Notion (avisar a John, no se arregla aquí): el typo "Industrial desing concept" en Humanoid Service Robot y Mobile Humanoid Robot. El sitio ya lo corrige con `TYPO_FIXES`.
+- Sitio publicado en https://johnnovoa.github.io/portfolio/ (GitHub Pages desde `main`, carpeta raíz, activado el 22 nov 2026). Portada, las 11 páginas de proyecto y la 404 verificadas en línea, sin enlaces ni imágenes rotas. John lo revisó en el celular y lo aprobó (23 nov 2026).
 - SOLIDWORKS Automation Tools está en pausa: John está convirtiendo las herramientas en plantillas genéricas. Hoy sale la versión corta, sin imágenes. Cuando John tenga capturas de la versión genérica, se rehace esa página.
+- Inglés: John pidió mostrarlo como "B2, upper intermediate" (23 nov 2026).
+- Imagen del primer destacado (Humanoid Robot Dual-Arm Redesign): el original en `../R_2A/` mide solo 433x738 px. Pedir a John un render más grande.
 - Robot.com figura como "2026 - Present" por decisión de John.
