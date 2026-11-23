@@ -20,7 +20,7 @@ CLAUDE.md             Instructions for Claude Code
 
 No build step for visitors and no dependencies. Open `index.html` in a browser to preview.
 
-To regenerate after a Notion update: unzip the Notion Markdown export into `../Notion_Portfolio/` and run `python tools/build_site.py` (needs Python 3.9+ and Pillow).
+To regenerate after a Notion update: unzip the Notion Markdown export into `../Notion_Portfolio/` and run `python tools/build_site.py` (needs Python 3.9+ and Pillow: `pip install -r tools/requirements.txt`).
 
 ## Publishing
 

@@ -28,7 +28,10 @@ Sin frameworks, sin npm, sin paso de compilación para el visitante. Rutas relat
 El HTML es generado. Los cambios de contenido van por el script, no a mano en el HTML, porque la próxima generación los borra.
 
 1. John actualiza Notion y exporta (··· > Export > Markdown & CSV, con subpáginas). Descomprime el export en `../Notion_Portfolio/`, reemplazando el anterior.
-2. Desde la raíz del repo: `python tools/build_site.py` (o `--export "ruta"` si el export está en otro lugar). Requiere Python 3.9+ y Pillow.
+2. Desde la raíz del repo: `.venv/Scripts/python tools/build_site.py` (o `--export "ruta"` si el export está en otro lugar). Requiere Python 3.9+ y Pillow.
+   - El entorno virtual `.venv/` vive en la raíz del repo (ignorado por git) y ya tiene Pillow. Si no existe: `python -m venv .venv` y `.venv/Scripts/python -m pip install -r tools/requirements.txt`.
+   - Windows necesita rutas largas activadas (`LongPathsEnabled = 1`). Algunas imágenes del export superan los 260 caracteres de ruta. Sin eso, el Explorador no las extrae del zip y el script falla con `FileNotFoundError`.
+   - Tras descomprimir, comprobar que no falte nada: el zip y la carpeta deben tener el mismo número de archivos.
 3. El script borra y regenera `projects/` y `assets/img/`, y reescribe `index.html`. No toca CSS, JS, fuentes, 404, README ni este archivo.
 4. Revisa el resultado en el navegador (abre `index.html`) en escritorio y en móvil (390 px de ancho).
 
@@ -78,11 +81,16 @@ Vienen de los acuerdos con John para el portafolio. No se rompen aunque la image
 - Nunca hacer `git push`, cambiar la configuración de GitHub Pages ni publicar nada sin un "sí" explícito de John para esa acción concreta.
 - Commits pequeños, con mensaje en inglés que diga qué cambió.
 - No subir el export de Notion ni imágenes originales sin procesar al repo. Solo lo que genera el script.
-- `.gitignore` excluye cachés de Python y archivos del sistema.
+- `.gitignore` excluye `.venv/`, cachés de Python y archivos del sistema.
 
 ## Estado al 22 nov 2026
 
-- Sitio construido y con commit inicial en `main`. El repositorio en GitHub existe pero está vacío: falta el primer `git push -u origin main` y activar Pages (Settings > Pages > Deploy from a branch > main / root).
+- Sitio publicado en https://johnnovoa.github.io/portfolio/ (GitHub Pages desde `main`, carpeta raíz, activado el 22 nov 2026). Portada, las 11 páginas de proyecto y la 404 verificadas en línea, sin enlaces ni imágenes rotas. Falta que John lo revise visualmente en el celular.
+- El script escribe el HTML con finales de línea LF, así que regenerar con el mismo export no deja diff.
+- Siguiente sesión, primer paso (John activó las rutas largas y reinicia el equipo):
+  1. Confirmar `LongPathsEnabled = 1` (`reg query HKLM\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled`).
+  2. Volver a descomprimir `../n.zip` en `../Notion_Portfolio/`. Hoy faltan 2 imágenes que Windows no extrajo por ruta larga, las dos en Additional Engineering Projects > Complementary Design Work: `Insulation_Stripping_Device_-_Exploded_assembly_drawing.png` y `Machinery_and_Spare_Components_-_Assembly_drawing_of_a_shaft_assembly.png`. El zip tiene 103 archivos.
+  3. Correr `.venv/Scripts/python tools/build_site.py` sin `--export` y confirmar que `git status` queda limpio.
 - Pendiente en Notion (avisar a John, no se arregla aquí): el typo "Industrial desing concept" en Humanoid Service Robot y Mobile Humanoid Robot. El sitio ya lo corrige con `TYPO_FIXES`.
 - SOLIDWORKS Automation Tools está en pausa: John está convirtiendo las herramientas en plantillas genéricas. Hoy sale la versión corta, sin imágenes. Cuando John tenga capturas de la versión genérica, se rehace esa página.
 - Robot.com figura como "2026 - Present" por decisión de John.
