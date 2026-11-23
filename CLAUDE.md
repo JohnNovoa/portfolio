@@ -87,10 +87,7 @@ Vienen de los acuerdos con John para el portafolio. No se rompen aunque la image
 
 - Sitio publicado en https://johnnovoa.github.io/portfolio/ (GitHub Pages desde `main`, carpeta raíz, activado el 22 nov 2026). Portada, las 11 páginas de proyecto y la 404 verificadas en línea, sin enlaces ni imágenes rotas. Falta que John lo revise visualmente en el celular.
 - El script escribe el HTML con finales de línea LF, así que regenerar con el mismo export no deja diff.
-- Siguiente sesión, primer paso (John activó las rutas largas y reinicia el equipo):
-  1. Confirmar `LongPathsEnabled = 1` (`reg query HKLM\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled`).
-  2. Volver a descomprimir `../n.zip` en `../Notion_Portfolio/`. Hoy faltan 2 imágenes que Windows no extrajo por ruta larga, las dos en Additional Engineering Projects > Complementary Design Work: `Insulation_Stripping_Device_-_Exploded_assembly_drawing.png` y `Machinery_and_Spare_Components_-_Assembly_drawing_of_a_shaft_assembly.png`. El zip tiene 103 archivos.
-  3. Correr `.venv/Scripts/python tools/build_site.py` sin `--export` y confirmar que `git status` queda limpio.
+- Rutas largas activadas en Windows. El export en `../Notion_Portfolio/` está completo (103 archivos, igual que `../n.zip`) y regenerar el sitio con él no deja diff.
 - Pendiente en Notion (avisar a John, no se arregla aquí): el typo "Industrial desing concept" en Humanoid Service Robot y Mobile Humanoid Robot. El sitio ya lo corrige con `TYPO_FIXES`.
 - SOLIDWORKS Automation Tools está en pausa: John está convirtiendo las herramientas en plantillas genéricas. Hoy sale la versión corta, sin imágenes. Cuando John tenga capturas de la versión genérica, se rehace esa página.
 - Robot.com figura como "2026 - Present" por decisión de John.
