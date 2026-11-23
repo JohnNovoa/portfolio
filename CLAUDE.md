@@ -43,10 +43,12 @@ El generador antiguo desde Notion (`tools/build_site.py`) se retiró el 23 nov 2
 - Paleta: azul marino `#0E1B2E` (hero, encabezados de proyecto, nav), tinta `#14243B`, gris claro `#F2F4F6`, blanco, amarillo de seguridad `#FFC72C` como único acento.
 - Tipografía: Archivo variable en todo el sitio. El ancho (`font-stretch`) da el carácter: nombres y títulos expandidos (110 a 125 %).
 - Fondo del hero con cuadrícula fina tipo papel de dibujo.
-- Imágenes de render sobre placas blancas con `object-fit: contain`. Fotos reales con `cover` (el script detecta fotos por las esquinas).
+- Imágenes de render sobre placas blancas con `object-fit: contain`. Fotos reales con `cover` (clase `cover` en el contenedor).
 - Una sola animación de entrada en el hero. Respeta `prefers-reduced-motion`. Hover discreto en tarjetas.
 - Responsive: cortes en 1000 px y 680 px. Probar siempre a 1440, 1024, 768 y 390 px.
-- Accesibilidad: foco visible, textos alternativos (los pies de foto), contraste AA, enlace "Skip to content".
+- Accesibilidad: foco visible, textos alternativos (los pies de foto), contraste AA, enlace "Skip to content". El aviso "Email copied" se anuncia a lectores de pantalla.
+- El diseño actual es el definitivo (decisión de John, 23 nov 2026). Se probaron y descartaron otras fuentes (ISOCPEUR, osifont) y dos rediseños completos (estilo plano técnico con rótulo y estilo taller con foto grande). No proponer rediseños ni cambios de fuente salvo que John lo pida.
+- Skills útiles instaladas en `~/.claude/skills`: `web-design-guidelines` (auditoría de HTML/CSS, se pasó el 23 nov 2026 y se corrigió todo salvo las mayúsculas de títulos) y `frontend-design`. Para texto nuevo en inglés, la skill `humanizer`.
 
 ## Reglas de contenido (obligatorias)
 
@@ -79,8 +81,15 @@ Vienen de los acuerdos con John para el portafolio. No se rompen aunque la image
 
 ## Estado al 23 nov 2026
 
-- Sitio publicado en https://johnnovoa.github.io/portfolio/ (GitHub Pages desde `main`, carpeta raíz, activado el 22 nov 2026). Portada, las 11 páginas de proyecto y la 404 verificadas en línea, sin enlaces ni imágenes rotas. John lo revisó en el celular y lo aprobó (23 nov 2026).
-- SOLIDWORKS Automation Tools está en pausa: John está convirtiendo las herramientas en plantillas genéricas. Hoy sale la versión corta, sin imágenes. Cuando John tenga capturas de la versión genérica, se rehace esa página.
-- Inglés: John pidió mostrarlo como "B2, upper intermediate" (23 nov 2026).
-- Imagen del primer destacado (Humanoid Robot Dual-Arm Redesign): el original en `../R_2A/` mide solo 433x738 px. Pedir a John un render más grande.
+- Sitio publicado en https://johnnovoa.github.io/portfolio/ (GitHub Pages desde `main`, carpeta raíz). John lo revisó en el celular y lo aprobó.
+- Hechos el 23 nov 2026: sitio independiente de Notion, foto nueva y nítida del Quadruped (números de robot pixelados, la mano que toca el robot se dejó), About más corto, inglés como "B2, upper intermediate", resultados del Quadruped (3 prototipos) y del Mobile Humanoid (2 unidades) reescritos, y correcciones de la auditoría web.
+- Contexto de los proyectos de robots (de John): todos fueron prototipos de pocas unidades, cada uno desarrollado en un mes de trabajo. El trabajo era convertir un concepto en algo real que cumpliera los requisitos estéticos y funcionales, con soportes, ensamble, materiales y procesos elegidos para que se pudiera fabricar y ensamblar. No era optimizar sino encontrar una solución eficaz. No hablar de moldes ni de SLA en los resultados.
 - Robot.com figura como "2026 - Present" por decisión de John.
+
+## Pendientes para la próxima sesión
+
+1. CV en PDF: John lo va a pasar. Plan acordado: subirlo como `assets/John-Novoa-CV.pdf` (no como enlace a Drive) y agregar un botón "Download CV" junto a "Email me" en la portada y en el bloque de contacto de todas las páginas. Para actualizarlo, se reemplaza el archivo con el mismo nombre y se hace push.
+2. Mayúsculas de títulos: la portada usa sentence case ("Selected work") y las páginas de proyecto Title Case ("Process & Tools", "Impact & Results"). Recomendado unificar en sentence case. Falta que John decida.
+3. Render más grande del Humanoid Robot Dual-Arm Redesign (primer destacado): el original mide 433x738 px y se ve suave en pantallas de alta resolución. John eligió dejar la imagen actual por ahora. El render de Gemini en `../R_2A/` NO se usa: cambia detalles del diseño respecto al CAD real.
+4. SOLIDWORKS Automation Tools: en pausa hasta que John tenga capturas de la versión genérica de las herramientas.
+5. Opcional, John dijo "por ahora no": dominio propio en lugar de github.io.
