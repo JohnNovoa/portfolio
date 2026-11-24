@@ -89,7 +89,8 @@ Vienen de los acuerdos con John para el portafolio. No se rompen aunque la image
 ## Pendientes para la próxima sesión
 
 1. CV en PDF: John lo va a pasar. Plan acordado: subirlo como `assets/John-Novoa-CV.pdf` (no como enlace a Drive) y agregar un botón "Download CV" junto a "Email me" en la portada y en el bloque de contacto de todas las páginas. Para actualizarlo, se reemplaza el archivo con el mismo nombre y se hace push.
-2. Mayúsculas de títulos: la portada usa sentence case ("Selected work") y las páginas de proyecto Title Case ("Process & Tools", "Impact & Results"). Recomendado unificar en sentence case. Falta que John decida.
+   John dejó el PDF como `John_Novoa_CV_EN.pdf` en la raíz del repo (sin seguimiento en git). Bloqueado: el PDF trae el teléfono (regla: sin teléfono en la web) y dice "2 prototypes" del Quadruped, mientras el sitio dice 3.
+2. Mayúsculas de títulos: hecho el 23 nov 2026. Los títulos de sección van en sentence case ("Process & tools", "Impact & results"). Los nombres de proyecto siguen en Title Case.
 3. Render más grande del Humanoid Robot Dual-Arm Redesign (primer destacado): el original mide 433x738 px y se ve suave en pantallas de alta resolución. John eligió dejar la imagen actual por ahora. El render de Gemini en `../R_2A/` NO se usa: cambia detalles del diseño respecto al CAD real.
 4. SOLIDWORKS Automation Tools: en pausa hasta que John tenga capturas de la versión genérica de las herramientas.
 5. Opcional, John dijo "por ahora no": dominio propio en lugar de github.io.
