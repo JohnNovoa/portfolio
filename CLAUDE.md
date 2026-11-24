@@ -82,14 +82,14 @@ Vienen de los acuerdos con John para el portafolio. No se rompen aunque la image
 ## Estado al 23 nov 2026
 
 - Sitio publicado en https://johnnovoa.github.io/portfolio/ (GitHub Pages desde `main`, carpeta raíz). John lo revisó en el celular y lo aprobó.
-- Hechos el 23 nov 2026: sitio independiente de Notion, foto nueva y nítida del Quadruped (números de robot pixelados, la mano que toca el robot se dejó), About más corto, inglés como "B2, upper intermediate", resultados del Quadruped (3 prototipos) y del Mobile Humanoid (2 unidades) reescritos, y correcciones de la auditoría web.
+- Hechos el 23 nov 2026: sitio independiente de Notion, foto nueva y nítida del Quadruped (números de robot pixelados, la mano que toca el robot se dejó), About más corto, inglés como "B2, upper intermediate", resultados del Quadruped (2 prototipos) y del Mobile Humanoid (2 unidades) reescritos, y correcciones de la auditoría web.
 - Contexto de los proyectos de robots (de John): todos fueron prototipos de pocas unidades, cada uno desarrollado en un mes de trabajo. El trabajo era convertir un concepto en algo real que cumpliera los requisitos estéticos y funcionales, con soportes, ensamble, materiales y procesos elegidos para que se pudiera fabricar y ensamblar. No era optimizar sino encontrar una solución eficaz. No hablar de moldes ni de SLA en los resultados.
 - Robot.com figura como "2026 - Present" por decisión de John.
 
 ## Pendientes para la próxima sesión
 
 1. CV en PDF. Plan acordado: subirlo como `assets/John-Novoa-CV.pdf` (no como enlace a Drive) y agregar un botón "Download CV" junto a "Email me" en la portada y en el bloque de contacto de todas las páginas. Para actualizarlo, se reemplaza el archivo con el mismo nombre y se hace push.
-   Hecho el 23 nov 2026: `assets/John-Novoa-CV.pdf` con botón "Download CV". John decidió publicarlo con su teléfono (excepción a la regla de no poner el teléfono en la web). El CV dice "2 prototypes" del Quadruped y el sitio dice 3: pendiente que John lo corrija en el PDF.
+   Hecho el 23 nov 2026: `assets/John-Novoa-CV.pdf` con botón "Download CV". John decidió publicarlo con su teléfono (excepción a la regla de no poner el teléfono en la web). El Quadruped tuvo 2 prototipos (sitio y CV coinciden).
 2. Mayúsculas de títulos: hecho el 23 nov 2026. Los títulos de sección van en sentence case ("Process & tools", "Impact & results"). Los nombres de proyecto siguen en Title Case.
 3. Render más grande del Humanoid Robot Dual-Arm Redesign (primer destacado): el original mide 433x738 px y se ve suave en pantallas de alta resolución. John eligió dejar la imagen actual por ahora. El render de Gemini en `../R_2A/` NO se usa: cambia detalles del diseño respecto al CAD real.
 4. SOLIDWORKS Automation Tools: en pausa hasta que John tenga capturas de la versión genérica de las herramientas.
